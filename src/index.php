@@ -28,12 +28,12 @@ if (array_key_exists("user",
             'password' => FILTER_DEFAULT]);
         try {
             // On vérifie l'existence de l'utilisateur
-            $fctManager->verifyUserCredentials($sanitizedEntries['email'],
+            $utilisateursMgr->verifyUserCredentials($sanitizedEntries['email'],
                     $sanitizedEntries['password']);
 
             // on enregistre l'utilisateur
             $_SESSION['user'] = $sanitizedEntries['email'];
-            $_SESSION['userID'] = $fctManager->getUserIDByEmailAddress($_SESSION['user']);
+            $_SESSION['userID'] = $utilisateursMgr->getUserIDByEmailAddress($_SESSION['user']);
             // on redirige vers la page d'édition des films préférés
             header("Location: editFavoriteMoviesList.php");
             exit;
