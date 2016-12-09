@@ -48,6 +48,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "GET") {
         <header>
             <h1>Séances du cinéma <?= $cinema['DENOMINATION'] ?></h1>
             <h2><?= $cinema['ADRESSE'] ?></h2>
+            <!-- Modification de l'affichage du formulaire uniquement pour admin -->
             <?php if ($filmsUnplanned && $adminConnected) : ?>
                 <form action="editShowtime.php" method="get">
                     <fieldset>
