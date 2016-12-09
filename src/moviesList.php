@@ -10,5 +10,9 @@ session_start();
 if (array_key_exists("user", $_SESSION) and $_SESSION['user'] == 'admin@adm.adm') {
     $isUserAdmin = true;
 }
+
+// Pour renvoyer vers le code html (vue)
+require 'views/viewMoviesList.php';
+
 ?>
 
