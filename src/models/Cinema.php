@@ -29,6 +29,23 @@ Class Cinema extends DBFunctions{
         // retour du résultat
         return $resultat;
     }
+    
+        /**
+     * 
+     * @param type $filmID
+     * @return type
+     */
+    public function getMovieCinemasByMovieID($filmID) {
+        // requête qui nous permet de récupérer la liste des cinémas pour un film donné
+        $requete = "SELECT DISTINCT c.* FROM cinema c"
+                . " INNER JOIN seance s ON c.cinemaID = s.cinemaID"
+                . " AND s.filmID = " . $filmID;
+        // on extrait les résultats
+        $resultat = $this->extraireNxN($requete);
+        // on retourne le résultat
+        return $resultat;
+    }
+    
     /**
      * 
      * @param type $denomination
