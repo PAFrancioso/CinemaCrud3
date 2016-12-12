@@ -43,7 +43,7 @@
         <ul>
             <?php
             // on récupère la liste des cinémas de ce film
-            $cinemas = $fctManager->getMovieCinemasByMovieID($filmID);
+            $cinemas = $cinemasMgr->getMovieCinemasByMovieID($filmID);
             if (count($cinemas) > 0):
                 // on boucle sur les résultats
                 foreach ($cinemas as $cinema) {
