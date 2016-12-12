@@ -35,7 +35,7 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST") {
         header('Location: movieShowtimes.php?filmID=' . $sanitizedEntries['filmID']);
         exit;
     } else {
-        header('Location: cinemaShowtimes.php?cinemaID=' . $sanitizedEntries['cinemaID']);
+        header('Location: index.php?action=cinemaShowtimes&cinemaID=' . $sanitizedEntries['cinemaID']);
         exit;
     }
 } else {

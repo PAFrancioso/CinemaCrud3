@@ -34,6 +34,10 @@ if ($sanitizedEntries && $sanitizedEntries['action'] !== '') {
     cinemaShowtimes($managers);
     }
     
+    elseif ($sanitizedEntries['action'] == "createNewUser") {
+        createNewUser($managers);
+    }
+    
     else {
         // Activation de la route par défaut (page d'accueil)
         home($managers);
