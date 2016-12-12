@@ -24,7 +24,7 @@
             </tr>
             <?php
             // on récupère la liste des cinémas ainsi que leurs informations
-            $cinemas = $utilisateursMgr->getCinemasList();
+            $cinemas = $cinemasMgr->getCinemasList();
             // boucle de construction de la liste des cinémas
             foreach ($cinemas as $cinema) {
                 ?>
