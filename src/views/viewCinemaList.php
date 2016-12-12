@@ -48,7 +48,8 @@
                             </form>
                         </td>
                         <td>
-                            <form name="deleteCinema" action="deleteCinema.php" method="POST">
+                            <form name="deleteCinema" action="index.php" method="POST">
+                                <input name="action" type="hidden" value="deleteCinema"/>
                                 <input type="hidden" name="cinemaID" value="<?= $cinema['CINEMAID'] ?>"/>
                                 <input type="image" src="images/deleteIcon.png" alt="Delete"/>
                             </form>

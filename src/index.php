@@ -17,25 +17,30 @@ session_start();
 // on "sainifie" les entrées
 $sanitizedEntries = filter_input_array(INPUT_GET,
         ['action' => FILTER_SANITIZE_STRING]);
-if ($sanitizedEntries && $sanitizedEntries['action'] !== '') {
+if ($sanitizedEntries && $sanitizedEntries['action'] !== '') 
+    {
     
     // si l'action demandée est la liste des cinémas
     if ($sanitizedEntries['action'] == "cinemasList") {
     
         // Activation de la route cinemasList
-        cinemasList($managers);
-        
+        cinemasList($managers); 
     } 
     
     elseif ($sanitizedEntries['action'] == "moviesList") {
     moviesList($managers);
 }
+    
     elseif ($sanitizedEntries['action'] == "cinemaShowtimes") {
     cinemaShowtimes($managers);
     }
     
     elseif ($sanitizedEntries['action'] == "createNewUser") {
         createNewUser($managers);
+    }
+    
+    elseif ($sanitizedEntries['action'] == "deleteCinema") {
+        deleteCinema($managers);
     }
     
     else {
