@@ -5,6 +5,7 @@
  */
 namespace Semeformation\Mvc\Cinema_crud\models;
 use \Semeformation\Mvc\Cinema_crud\includes\DBFunctions;
+use Exception;
 /**
  * Description of Utilisateur
  *
