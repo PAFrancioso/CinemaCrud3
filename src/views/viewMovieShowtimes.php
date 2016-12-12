@@ -61,7 +61,7 @@
                         </tr>
                         <?php
                         // on récupère pour chaque cinéma de ce film, la liste des séances
-                        $seances = $fctManager->getMovieShowtimes($cinema['CINEMAID'],
+                        $seances = $seanceMgr->getMovieShowtimes($cinema['CINEMAID'],
                                 $filmID);
                         // boucle sur les séances
                         foreach ($seances as $seance) {
