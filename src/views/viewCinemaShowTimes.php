@@ -41,7 +41,7 @@
         <ul>
             <?php
             // on récupère la liste des films de ce cinéma
-            $films = $cinemasMgr->getCinemaMoviesByCinemaID($cinemaID);
+            $films = $managers['cinemasMgr']->getCinemaMoviesByCinemaID($cinemaID);
             // si au moins un résultat
             if (count($films) > 0) {
                 // on boucle sur les résultats
@@ -60,7 +60,7 @@
                         </tr>
                         <?php
                         // on récupère pour chaque film de ce cinéma, la liste des séances
-                        $seances = $seanceMgr->getMovieShowtimes($cinemaID,
+                        $seances = $managers['seanceMgr']->getMovieShowtimes($cinemaID,
                                 $film['FILMID']);
                         // boucle sur les séances
                         foreach ($seances as $seance) {
@@ -133,7 +133,8 @@
             ?>
         </ul>
         <br>
-        <form action = "cinemasList.php">
+        <form name="cinemasList" method="GET" action = "index.php">
+            <input name="action" type="hidden" value="cinemasList"/>
             <input type = "submit" value = "Retour à la liste des cinémas"/>
         </form>
     </body>

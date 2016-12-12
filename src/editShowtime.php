@@ -45,9 +45,9 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') == 'GET') {
         // d'où vient on ?
         $from = $sanitizedEntries['from'];
         // puis on récupère les informations du cinéma en question
-        $cinema = $cinemasMgr->getCinemaInformationsByID($cinemaID);
+        $cinema = $managers['cinemasMgr']->getCinemaInformationsByID($cinemaID);
         // puis on récupère les informations du film en question
-        $film = $filmsMgr->getMovieInformationsByID($filmID);
+        $film = $managers['filmsMgr']->getMovieInformationsByID($filmID);
 
         // s'il on vient des séances du film
         if (strstr($sanitizedEntries['from'], 'movie')) {
@@ -114,14 +114,14 @@ if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') == 'GET') {
         // Est-on dans le cas d'une insertion ?
         if (!isset($sanitizedEntries['modificationInProgress'])) {
             // j'insère dans la base
-            $resultat = $seanceMgr->insertNewShowtime($sanitizedEntries['cinemaID'],
+            $resultat = $managers['seanceMgr']->insertNewShowtime($sanitizedEntries['cinemaID'],
                     $sanitizedEntries['filmID'],
                     $datetimeDebut->format("Y-m-d H:i"),
                     $datetimeFin->format("Y-m-d H:i"),
                     $sanitizedEntries['version']);
         } else {
             // c'est une mise à jour
-            $resultat = $seanceMgr->updateShowtime($sanitizedEntries['cinemaID'],
+            $resultat = $managers['seanceMgr']->updateShowtime($sanitizedEntries['cinemaID'],
                     $sanitizedEntries['filmID'],
                     $sanitizedEntries['dateheuredebutOld'],
                     $sanitizedEntries['dateheurefinOld'],

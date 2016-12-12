@@ -15,8 +15,13 @@ $logger = new Logger("Functions");
 $logger->pushHandler(new StreamHandler(dirname(__DIR__) . './logs/functions.log'));
 // Appel de la classe Utilisateur qui herite de DBFunctions
 
-$utilisateursMgr = new Utilisateur($logger);
-$cinemasMgr = new Cinema($logger);
-$filmsMgr = new Film($logger);
-$prefereMgr = new Prefere($logger);
-$seanceMgr = new Seance($logger);
+//$utilisateursMgr = new Utilisateur($logger);
+//$cinemasMgr = new Cinema($logger);
+//$filmsMgr = new Film($logger);
+//$prefereMgr = new Prefere($logger);
+//$seanceMgr = new Seance($logger);
+$managers = ['utilisateursMgr' => new Utilisateur($logger),
+'cinemasMgr' => new Cinema($logger),
+'seanceMgr' => new Seance($logger),
+'prefereMgr' => new Prefere($logger),
+'filmsMgr' => new Film($logger)];
