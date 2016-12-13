@@ -21,7 +21,7 @@
             <h2><?= $film['TITREORIGINAL'] ?></h2>
             <!-- Modification de l'affichage du formulaire uniquement pour admin -->
             <?php if ($cinemasUnplanned && $adminConnected) : ?>
-                <form action="editShowtime.php" method="get">
+                <form action="index.php?action=editShowtime" method="get">
                     <fieldset>
                         <legend>Programmer le film dans un cinéma</legend>
                         <input name="filmID" type="hidden" value="<?= $filmID ?>">
@@ -86,7 +86,7 @@
                                 <td><?= $seance['VERSION'] ?></td>
                                 <?php if ($adminConnected): ?>
                                     <td>
-                                        <form name="modifyMovieShowtime" action="editShowtime.php" method="GET">
+                                        <form name="modifyMovieShowtime" action="index.php?action=editShowtime" method="GET">
                                             <input type="hidden" name="cinemaID" value="<?= $cinema['CINEMAID'] ?>"/>
                                             <input type="hidden" name="filmID" value="<?= $filmID ?>"/>
                                             <input type="hidden" name="heureDebut" value="<?= $seance['HEUREDEBUT'] ?>"/>
@@ -116,7 +116,7 @@
                             ?>
                             <tr class="new">
                                 <td colspan="6">
-                                    <form action="editShowtime.php" method="get">
+                                    <form action="index.php?action=editShowtime" method="get">
                                         <input name="cinemaID" type="hidden" value="<?= $cinema['CINEMAID'] ?>">
                                         <input name="filmID" type="hidden" value="<?= $filmID ?>">
                                         <input name="from" type="hidden" value="<?= $_SERVER['SCRIPT_NAME'] ?>">
@@ -134,7 +134,7 @@
             endif;
             ?>
         </ul>
-        <form action="moviesList.php">
+        <form action="index.php?action=moviesList">
             <input type="submit" value="Retour à la liste des films"/>
         </form>
     </body>

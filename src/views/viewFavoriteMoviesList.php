@@ -40,7 +40,7 @@ and open the template in the editor.
                         <td><?= $film['titre'] ?></td>
                         <td><?= $film['commentaire'] ?></td>
                         <td>
-                            <form name="modifyFavoriteMovie" action="editFavoriteMovie.php" method="GET">
+                            <form name="modifyFavoriteMovie" action="index.php?action=editFavoriteMovie" method="GET">
                                 <input type="hidden" name="userID" value="<?= $utilisateur['userID'] ?>"/>
                                 <input type="hidden" name="filmID" value="<?= $film['filmID'] ?>"/>
                                 <input type="image" src="images/modifyIcon.png" alt="Modify"/>
@@ -61,7 +61,7 @@ and open the template in the editor.
             ?>
             <tr class="new">
                 <td colspan="4">
-                    <form name="addFavoriteMovie" action="editFavoriteMovie.php">
+                    <form name="addFavoriteMovie" action="index.php?action=editFavoriteMovie">
                         <button class="add" type="submit">Cliquer pour ajouter un film préféré...</button>
                     </form>
                 </td>

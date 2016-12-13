@@ -19,7 +19,7 @@
             <h2><?= $cinema['ADRESSE'] ?></h2>
             <!-- Modification de l'affichage du formulaire uniquement pour admin -->
             <?php if ($filmsUnplanned && $adminConnected) : ?>
-                <form action="editShowtime.php" method="get">
+                <form action="index.php?action=editShowtime" method="get">
                     <fieldset>
                         <legend>Ajouter un film à la programmation</legend>
                         <input name="cinemaID" type="hidden" value="<?= $cinemaID ?>">
@@ -85,7 +85,7 @@
                                 <td><?= $seance['VERSION'] ?></td>
                                 <?php if ($adminConnected): ?>
                                     <td>
-                                        <form name="modifyMovieShowtime" action="editShowtime.php" method="GET">
+                                        <form name="modifyMovieShowtime" action="index.php?action=editShowtime" method="GET">
                                             <input type="hidden" name="cinemaID" value="<?= $cinemaID ?>"/>
                                             <input type="hidden" name="filmID" value="<?= $film['FILMID'] ?>"/>
                                             <input type="hidden" name="heureDebut" value="<?= $seance['HEUREDEBUT'] ?>"/>
@@ -116,7 +116,7 @@
                             ?>
                             <tr class="new">
                                 <td colspan="6">
-                                    <form action="editShowtime.php" method="get">
+                                    <form action="index.php?action=editShowtime" method="get">
                                         <input name="cinemaID" type="hidden" value="<?= $cinemaID ?>">
                                         <input name="filmID" type="hidden" value="<?= $film['FILMID'] ?>">
                                         <input name="from" type="hidden" value="<?= $_SERVER['SCRIPT_NAME'] ?>">
@@ -134,9 +134,9 @@
             ?>
         </ul>
         <br>
-        <form name="cinemasList" method="GET" action = "index.php">
+        <form name="cinemasList" method="GET" action="index.php">
             <input name="action" type="hidden" value="cinemasList"/>
-            <input type = "submit" value = "Retour à la liste des cinémas"/>
+            <input type="submit" value="Retour à la liste des cinémas"/>
         </form>
     </body>
 </html>

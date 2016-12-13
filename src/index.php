@@ -58,9 +58,28 @@ if ($sanitizedEntries && $sanitizedEntries['action'] !== '')
     elseif ($sanitizedEntries['action'] == "editFavoriteMovie") {
         editFavoriteMovie($managers);
     }
-        
+    
+    elseif ($sanitizedEntries['action'] == "editFavoriteMoviesList") {
+        editFavoriteMoviesList($managers);
+    }
+    
+    elseif ($sanitizedEntries['action'] == "editMovie") {
+        editMovie($managers);
+    }
+       
+    elseif ($sanitizedEntries['action'] == "editShowtime") {
+        editShowtime($managers);
+    }
+    
+    elseif ($sanitizedEntries['action'] == "logout") {
+        logout();
+    }
     elseif ($sanitizedEntries['action'] == "moviesList") {
         moviesList($managers);
+    }
+    
+    elseif ($sanitizedEntries['action'] == "movieShowtimes") {
+        movieShowtimes($managers);
     }
     
     else {

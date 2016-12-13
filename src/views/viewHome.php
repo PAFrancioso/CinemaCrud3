@@ -43,10 +43,10 @@
             // sinon (utilisateur authentifié)
             else:
                 ?>
-                <form action="editFavoriteMoviesList.php">
+                <form action="index.php?action=editFavoriteMoviesList">
                     <input type="submit" value="Editer ma liste de films préférés"/>
                 </form>
-                <a href="logout.php">Se déconnecter</a>
+                <a href="index.php?action=logout">Se déconnecter</a>
             <?php endif; ?>
         </div>
         <!-- Gestion des cinémas -->

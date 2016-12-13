@@ -40,7 +40,7 @@
                     </td>
                     <?php if ($isUserAdmin): ?>
                         <td>
-                            <form name="modifyMovie" action="editMovie.php" method="GET">
+                            <form name="modifyMovie" action="index.php?action=editMovie" method="GET">
                                 <input type="hidden" name="filmID" value="<?= $film['FILMID'] ?>"/>
                                 <input type="image" src="images/modifyIcon.png" alt="Modify"/>
                             </form>
@@ -60,7 +60,7 @@
             <?php if ($isUserAdmin): ?>
                 <tr class="new">
                     <td colspan="5">
-                        <form name="addMovie" action="editMovie.php">
+                        <form name="addMovie" action="index.php?action=editMovie">
                             <button class="add" type="submit">Cliquer ici pour ajouter un film...</button>
                         </form>
                     </td>
