@@ -41,7 +41,7 @@ if (array_key_exists("user",
             $_SESSION['user'] = $sanitizedEntries['email'];
             $_SESSION['userID'] = $managers['utilisateursMgr']->getUserIDByEmailAddress($_SESSION['user']);
             // on redirige vers la page d'édition des films préférés
-            header("Location: editFavoriteMoviesList.php");
+            header("Location: index.php?action=editFavoriteMoviesList");
             exit;
         } catch (Exception $ex) {
             $areCredentialsOK = false;
@@ -185,7 +185,7 @@ if (filter_input(INPUT_SERVER,
         $_SESSION['user'] = $sanitizedEntries['email'];
         $_SESSION['userID'] = $managers['utilisateursMgr']->getUserIDByEmailAddress($_SESSION['user']);
         // on redirige vers la page d'édition des films préférés
-        header("Location: editFavoriteMoviesList.php");
+        header("Location: index.php?action=editFavoriteMoviesList");
         exit;
     }
 }
