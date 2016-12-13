@@ -16,7 +16,7 @@
     </head>
     <body>
         <h1>Ajouter/Modifier un cinéma</h1>
-        <form method="POST" name="editCinema" action="editCinema.php">
+        <form method="POST" name="editCinema" action="index.php?action=editCinema">
             <label>Dénomination :</label>
             <input name="denomination" type="text" value="<?= $cinema['DENOMINATION'] ?>" required/>
             <label>Adresse :</label>
@@ -33,7 +33,7 @@
             ?>
             <input type="submit" name="saveEntry" value="Sauvegarder"/>
         </form>
-        <form method="POST" action="editCinema.php">
+        <form method="POST" action="index.php?action=editCinema">
         <input type="submit" name="backToList" value="Retour à la liste"/>
         </form>
     </body>

@@ -43,7 +43,8 @@
             // sinon (utilisateur authentifié)
             else:
                 ?>
-                <form action="index.php?action=editFavoriteMoviesList">
+                <form action="index.php">
+                    <input type="hidden" value="editFavoriteMoviesList" name="action">
                     <input type="submit" value="Editer ma liste de films préférés"/>
                 </form>
                 <a href="index.php?action=logout">Se déconnecter</a>

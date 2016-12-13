@@ -49,8 +49,7 @@
                             </form>
                         </td>
                         <td>
-                            <form name="deleteCinema" action="index.php" method="POST">
-                                <input name="action" type="hidden" value="deleteCinema"/>
+                            <form name="deleteCinema" action="index.php?action=deleteCinema" method="POST">                 
                                 <input name="editCinema" type="hidden" value="editCinema" />
                                 <input type="hidden" name="cinemaID" value="<?= $cinema['CINEMAID'] ?>"/>
                                 <input type="image" src="images/deleteIcon.png" alt="Delete"/>
@@ -64,7 +63,8 @@
                 ?>
                 <tr class="new">
                     <td colspan="5">
-                        <form name="addCinema" action="editCinema.php">
+                        <form name="addCinema" action="index.php">
+                            <input type="hidden" name="action" value="editCinema"/>
                             <button class="add" type="submit">Cliquer ici pour ajouter un cinéma</button>
                         </form>
                     </td>
