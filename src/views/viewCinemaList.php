@@ -42,7 +42,8 @@
                     if ($isUserAdmin):
                         ?>
                         <td>
-                            <form name="modifyCinema" action="editCinema.php" method="GET">
+                            <form name="modifyCinema" action="index.php" method="GET">
+                                <input name="action" type="hidden" value="editCinema" />
                                 <input type="hidden" name="cinemaID" value="<?= $cinema['CINEMAID'] ?>"/>
                                 <input type="image" src="images/modifyIcon.png" alt="Modify"/>
                             </form>
@@ -50,6 +51,7 @@
                         <td>
                             <form name="deleteCinema" action="index.php" method="POST">
                                 <input name="action" type="hidden" value="deleteCinema"/>
+                                <input name="editCinema" type="hidden" value="editCinema" />
                                 <input type="hidden" name="cinemaID" value="<?= $cinema['CINEMAID'] ?>"/>
                                 <input type="image" src="images/deleteIcon.png" alt="Delete"/>
                             </form>

@@ -47,7 +47,8 @@ and open the template in the editor.
                             </form>
                         </td>
                         <td>
-                            <form name="deleteFavoriteMovie" action="deleteFavoriteMovie.php" method="POST">
+                            <form name="deleteFavoriteMovie" action="index.php" method="POST">
+                                <input name="action" type="hidden" value ="deleteFavoriteMovie"/>
                                 <input type="hidden" name="userID" value="<?= $utilisateur['userID'] ?>"/>
                                 <input type="hidden" name="filmID" value="<?= $film['filmID'] ?>"/>
                                 <input type="image" src="images/deleteIcon.png" alt="Delete"/>

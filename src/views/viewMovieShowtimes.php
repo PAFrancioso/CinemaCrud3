@@ -97,7 +97,8 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <form name="deleteMovieShowtime" action="deleteShowtime.php" method="POST">
+                                        <form name="deleteMovieShowtime" action="index.php" method="POST">
+                                            <input name="action" type="hidden" value="deleteShowtime"/>
                                             <input type="hidden" name="cinemaID" value="<?= $cinema['CINEMAID'] ?>"/>
                                             <input type="hidden" name="filmID" value="<?= $filmID ?>"/>
                                             <input type="hidden" name="heureDebut" value="<?= $seance['HEUREDEBUT'] ?>"/>

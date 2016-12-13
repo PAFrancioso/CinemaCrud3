@@ -46,7 +46,8 @@
                             </form>
                         </td>
                         <td>
-                            <form name="deleteMovie" action="deleteMovie.php" method="POST">
+                            <form name="deleteMovie" action="index.php" method="POST">
+                                <input name="action" type ="hidden" value ="deleteMovie"/>
                                 <input type="hidden" name="filmID" value="<?= $film['FILMID'] ?>"/>
                                 <input type="image" src="images/deleteIcon.png" alt="Delete"/>
                             </form>

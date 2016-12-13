@@ -228,6 +228,162 @@ exit;
 
 }
 
+function deleteFavoriteMovie($managers){
+    // si l'utilisateur n'est pas connecté
+if (!array_key_exists("user", $_SESSION)) {
+// renvoi à la page d'accueil
+    header('Location: index.php');
+    exit;
+}
+
+// si la méthode de formulaire est la méthode POST
+if (filter_input(INPUT_SERVER,
+                'REQUEST_METHOD') === "POST") {
+
+    // on "sainifie" les entrées
+    $sanitizedEntries = filter_input_array(INPUT_POST,
+            ['userID' => FILTER_SANITIZE_NUMBER_INT,
+        'filmID' => FILTER_SANITIZE_NUMBER_INT]);
+
+    // suppression de la préférence de film
+    $managers['prefereMgr']->deleteFavoriteMovie($sanitizedEntries['userID'],
+            $sanitizedEntries['filmID']);
+}
+// redirection vers la liste des préférences de films
+header("Location: index.php?action=editFavoriteMoviesList");
+exit;
+}
+
+function deleteMovie($managers){
+    // si l'utilisateur n'est pas connecté ou sinon s'il n'est pas amdinistrateur
+if (!array_key_exists("user", $_SESSION) or $_SESSION['user'] !== 'admin@adm.adm') {
+    // renvoi à la page d'accueil
+    header('Location: index.php');
+    exit;
+}
+
+// si la méthode de formulaire est la méthode POST
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST") {
+
+    // on "sainifie" les entrées
+    $sanitizedEntries = filter_input_array(INPUT_POST, ['filmID' => FILTER_SANITIZE_NUMBER_INT]);
+
+    // suppression de la préférence de film
+    $managers['filmsMgr']->deleteMovie($sanitizedEntries['filmID']);
+}
+// redirection vers la liste des films
+header("Location: index.php?action=moviesList");
+exit;
+
+}
+
+function deleteShowtime($managers){
+    // si l'utilisateur n'est pas connecté
+if (!array_key_exists("user", $_SESSION)) {
+// renvoi à la page d'accueil
+    header('Location: index.php');
+    exit;
+}
+
+// si la méthode de formulaire est la méthode POST
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST") {
+
+    // on assainie les variables
+    $sanitizedEntries = filter_input_array(INPUT_POST,
+            ['cinemaID' => FILTER_SANITIZE_NUMBER_INT,
+        'filmID' => FILTER_SANITIZE_NUMBER_INT,
+        'heureDebut' => FILTER_SANITIZE_STRING,
+        'heureFin' => FILTER_SANITIZE_STRING,
+        'version' => FILTER_SANITIZE_STRING,
+        'from' => FILTER_SANITIZE_STRING
+    ]);
+
+    // suppression de la séance
+    $managers['seanceMgr']->deleteShowtime($sanitizedEntries['cinemaID'],
+            $sanitizedEntries['filmID'], $sanitizedEntries['heureDebut'],
+            $sanitizedEntries['heureFin']
+    );
+    // en fonction d'où je viens, je redirige
+    if (strstr($sanitizedEntries['from'], 'movie')) {
+        header('Location: index.php?action=movieShowtimes&filmID=' . $sanitizedEntries['filmID']);
+        exit;
+    } else {
+        header('Location: index.php?action=cinemaShowtimes&cinemaID=' . $sanitizedEntries['cinemaID']);
+        exit;
+    }
+} else {
+    // renvoi à la page d'accueil
+    header('Location: index.php');
+    exit;
+}
+
+}
+
+function editCinema($managers){
+    // si l'utilisateur n'est pas connecté ou sinon s'il n'est pas amdinistrateur
+if (!array_key_exists("user", $_SESSION) or $_SESSION['user'] !== 'admin@adm.adm') {
+    // renvoi à la page d'accueil
+    header('Location: index.php');
+    exit;
+}
+
+// variable qui sert à conditionner l'affichage du formulaire
+$isItACreation = false;
+
+// si la méthode de formulaire est la méthode POST
+if (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "POST") {
+
+    // on "sainifie" les entrées
+    $sanEntries = filter_input_array(INPUT_POST, ['backToList' => FILTER_DEFAULT,
+        'cinemaID' => FILTER_SANITIZE_NUMBER_INT,
+        'adresse' => FILTER_SANITIZE_STRING,
+        'denomination' => FILTER_SANITIZE_STRING,
+        'modificationInProgress' => FILTER_SANITIZE_STRING]);
+
+    // si l'action demandée est retour en arrière
+    if ($sanEntries['backToList'] !== NULL) {
+        // on redirige vers la page des cinémas
+        header('Location: index.php?action=cinemasList');
+        exit;
+    }
+    // sinon (l'action demandée est la sauvegarde d'un cinéma)
+    else {
+
+        // et que nous ne sommes pas en train de modifier un cinéma
+        if ($sanEntries['modificationInProgress'] == NULL) {
+            // on ajoute le cinéma
+            $managers['cinemasMgr']->insertNewCinema($sanEntries['denomination'], $sanEntries['adresse']);
+        }
+        // sinon, nous sommes dans le cas d'une modification
+        else {
+            // mise à jour du cinéma
+            $managers['cinemasMgr']->updateCinema($sanEntries['cinemaID'], $sanEntries['denomination'], $sanEntries['adresse']);
+        }
+        // on revient à la liste des cinémas
+        header('Location: index.php?action=cinemasList');
+        exit;
+    }
+}// si la page est chargée avec $_GET
+elseif (filter_input(INPUT_SERVER, 'REQUEST_METHOD') === "GET") {
+    // on "sainifie" les entrées
+    $sanEntries = filter_input_array(INPUT_GET, ['cinemaID' => FILTER_SANITIZE_NUMBER_INT]);
+    if ($sanEntries && $sanEntries['cinemaID'] !== NULL && $sanEntries['cinemaID'] !== '') {
+        // on récupère les informations manquantes 
+        $cinema = $managers['cinemasMgr']->getCinemaInformationsByID($sanEntries['cinemaID']);
+    }
+    // sinon, c'est une création
+    else {
+        $isItACreation = true;
+        $cinema = [
+            'CINEMAID' => '',
+            'DENOMINATION' => '',
+            'ADRESSE' => ''
+        ];
+    }
+}
+require_once 'views/viewEditCinema.php';
+}
+
 function moviesList($managers)
 {
     
@@ -240,5 +396,3 @@ if (array_key_exists("user", $_SESSION) and $_SESSION['user'] == 'admin@adm.adm'
 require_once 'views/viewMoviesList.php';
 
 }
-
-

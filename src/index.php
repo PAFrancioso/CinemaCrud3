@@ -27,10 +27,6 @@ if ($sanitizedEntries && $sanitizedEntries['action'] !== '')
         cinemasList($managers); 
     } 
     
-    elseif ($sanitizedEntries['action'] == "moviesList") {
-    moviesList($managers);
-}
-    
     elseif ($sanitizedEntries['action'] == "cinemaShowtimes") {
     cinemaShowtimes($managers);
     }
@@ -41,6 +37,26 @@ if ($sanitizedEntries && $sanitizedEntries['action'] !== '')
     
     elseif ($sanitizedEntries['action'] == "deleteCinema") {
         deleteCinema($managers);
+    }
+    
+    elseif ($sanitizedEntries['action'] == "deleteFavoriteMovie") {
+        deleteFavoriteMovie($managers);
+    }
+    
+    elseif ($sanitizedEntries['action'] == "deleteMovie") {
+        deleteMovie($managers);
+    }
+    
+    elseif ($sanitizedEntries['action'] == "deleteShowtime") {
+        deleteShowtime($managers);
+    }
+    
+    elseif ($sanitizedEntries['action'] == "editCinema") {
+        editCinema($managers);
+    }
+        
+    elseif ($sanitizedEntries['action'] == "moviesList") {
+        moviesList($managers);
     }
     
     else {
