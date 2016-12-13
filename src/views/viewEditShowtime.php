@@ -69,7 +69,8 @@
                 <button type="submit">Retour aux séances du cinéma</button>
             </form>
         <?php else: ?>
-            <form action="movieShowtimes.php">
+            <form action="index.php">
+                <input name="action" value="movieShowtimes" type="hidden"/>
                 <input name="filmID" type="hidden" value="<?= $filmID ?>">
                 <button type="submit">Retour aux séances</button>
             </form>

@@ -33,21 +33,22 @@
                     <td><?= $film['TITRE'] ?></td>
                     <td><?= $film['TITREORIGINAL'] ?></td>
                     <td>
-                        <form name="movieShowtimes" action="movieShowtimes.php" method="GET">
+                        <form name="movieShowtimes" action="index.php" method="GET">
+                            <input name="action" value="movieShowtimes" type="hidden"/>
                             <input name="filmID" type="hidden" value="<?= $film['FILMID'] ?>"/>
                             <input type="submit" value="Consulter les séances"/>
                         </form>
                     </td>
                     <?php if ($isUserAdmin): ?>
                         <td>
-                            <form name="modifyMovie" action="index.php?action=editMovie" method="GET">
+                            <form name="modifyMovie" action="index.php" method="GET">
+                                <input type="hidden" name="action" value="editMovie"/>
                                 <input type="hidden" name="filmID" value="<?= $film['FILMID'] ?>"/>
                                 <input type="image" src="images/modifyIcon.png" alt="Modify"/>
                             </form>
                         </td>
                         <td>
-                            <form name="deleteMovie" action="index.php" method="POST">
-                                <input name="action" type ="hidden" value ="deleteMovie"/>
+                            <form name="deleteMovie" action="index.php?action=deleteMovie" method="POST">
                                 <input type="hidden" name="filmID" value="<?= $film['FILMID'] ?>"/>
                                 <input type="image" src="images/deleteIcon.png" alt="Delete"/>
                             </form>

@@ -19,9 +19,10 @@
             <h2><?= $cinema['ADRESSE'] ?></h2>
             <!-- Modification de l'affichage du formulaire uniquement pour admin -->
             <?php if ($filmsUnplanned && $adminConnected) : ?>
-                <form action="index.php?action=editShowtime" method="get">
+                <form action="index.php" method="get">
                     <fieldset>
                         <legend>Ajouter un film à la programmation</legend>
+                        <input name="action" value="editShowtime" type="hidden"/>
                         <input name="cinemaID" type="hidden" value="<?= $cinemaID ?>">
                         <select name="filmID">
                             <?php
@@ -85,7 +86,8 @@
                                 <td><?= $seance['VERSION'] ?></td>
                                 <?php if ($adminConnected): ?>
                                     <td>
-                                        <form name="modifyMovieShowtime" action="index.php?action=editShowtime" method="GET">
+                                        <form name="modifyMovieShowtime" action="index.php" method="GET">
+                                            <input type="hidden" name="action" value="editShowtime"/>
                                             <input type="hidden" name="cinemaID" value="<?= $cinemaID ?>"/>
                                             <input type="hidden" name="filmID" value="<?= $film['FILMID'] ?>"/>
                                             <input type="hidden" name="heureDebut" value="<?= $seance['HEUREDEBUT'] ?>"/>
@@ -96,8 +98,7 @@
                                         </form>
                                     </td>
                                     <td>
-                                        <form name="deleteMovieShowtime" action="index.php" method="POST">
-                                            <input name="action" type="hidden" value="deleteShowtime"/>
+                                        <form name="deleteMovieShowtime" action="index.php?action=deleteShowtime" method="POST">
                                             <input type="hidden" name="cinemaID" value="<?= $cinemaID ?>"/>
                                             <input type="hidden" name="filmID" value="<?= $film['FILMID'] ?>"/>
                                             <input type="hidden" name="heureDebut" value="<?= $seance['HEUREDEBUT'] ?>"/>
