@@ -54,6 +54,10 @@ if ($sanitizedEntries && $sanitizedEntries['action'] !== '')
     elseif ($sanitizedEntries['action'] == "editCinema") {
         editCinema($managers);
     }
+    
+    elseif ($sanitizedEntries['action'] == "editFavoriteMovie") {
+        editFavoriteMovie($managers);
+    }
         
     elseif ($sanitizedEntries['action'] == "moviesList") {
         moviesList($managers);
